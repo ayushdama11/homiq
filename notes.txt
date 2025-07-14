@@ -1,0 +1,4 @@
+A mixin is like a function in programming, but for CSS styles.
+It lets you group and reuse CSS code across your stylesheet.
+
+@content allows you to pass custom blocks of styles into a mixin and place them wherever you want inside the mixin body.
