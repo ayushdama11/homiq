@@ -63,10 +63,17 @@ nav {
         a {
             padding: 12px 24px;
             margin: 20px;
+            white-space: nowrap;
+
+            @include md {
+                padding: 8px 14px;
+                margin: 8px;
+            }
         }
 
         .register {
             background-color: #fece51;
+            
         }
 
         .menuIcon {
@@ -109,5 +116,7 @@ nav {
                 }
             }
         }
+
+        
     }
 }

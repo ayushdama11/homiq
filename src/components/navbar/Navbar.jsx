@@ -2,7 +2,9 @@ import "./navbar.scss"
 import { useState } from "react";
 
 function Navbar() {
+    // for mobile menu
     const [open, setOpen] = useState(false);
+
     return (
         <nav>
             <div className="left">
@@ -22,7 +24,9 @@ function Navbar() {
                 <div className="menuIcon">
                     <img src="/menu.png"
                      alt=""
-                     onClick={()=>setOpen((prev) => !prev)}
+                     onClick={
+                        ()=>setOpen((prev) => !prev)
+                     }
                     />
                 </div>
                 
