@@ -1,9 +1,14 @@
 import "./navbar.scss"
 import { useState } from "react";
+import { Link } from "react-router-dom";
 
 function Navbar() {
     // for mobile menu
     const [open, setOpen] = useState(false);
+
+    // if user there then show profile pic and all
+    const user = true;
+    
 
     return (
         <nav>
@@ -19,8 +24,18 @@ function Navbar() {
             </div>
 
             <div className="right">
-                <a href="/">Sign in</a>
-                <a href="/" className="register">Sign up</a>
+                {user ? (
+                    <div className="user">
+                        <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                        <span>John Doe</span>
+                        <Link to="/profile">Profile</Link>
+                    </div>
+                ) : (
+                    <>
+                        <a href="/">Sign in</a>
+                        <a href="/" className="register">Sign up</a>
+                    </>
+                )}
                 <div className="menuIcon">
                     <img src="/menu.png"
                      alt=""

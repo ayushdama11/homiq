@@ -71,6 +71,20 @@ nav {
             }
         }
 
+        .user {
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+
+            img {
+                width: 40px;
+                height: 40px;
+                border-radius: 50%;
+                object-fit: cover;
+                margin-right: 20px;
+            }
+        }
+
         .register {
             background-color: #fece51;
             
@@ -116,7 +130,5 @@ nav {
                 }
             }
         }
-
-        
     }
 }
