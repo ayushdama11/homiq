@@ -1,0 +1,4 @@
+** to run file via console ninja
+npx console-ninja node --watch app.js
+
+npx nodemon --env-file .env --watch . app.js
