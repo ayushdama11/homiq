@@ -56,10 +56,16 @@ export const login = async (req, res) => {
         const token = jwt.sign(
             {
                 id: user.id,
+                isAdmin: false,
             },
             process.env.JWT_SECRET_KEY,
             {   expiresIn: age  }
         );
+        
+        // ye line user ka pswd nikalke alag variable named as userPassword me store krega 
+        // and rest of the info excluding the password will be stored inside the userInfo
+        // rest operator !!
+        const {password: userPassword, ...userInfo} = user
 
         // cookie me jwt token set krdo -> {name, value, options}
         res
@@ -69,7 +75,7 @@ export const login = async (req, res) => {
                 maxAge: age,
             }) 
             .status(200)
-            .json({message: "login successfull !!"});
+            .json(userInfo);
 
     } catch(err) {
         console.log(err);
