@@ -1,17 +1,30 @@
-import { useNavigate } from 'react-router-dom';
+import { Link, useNavigate } from 'react-router-dom';
 import Chat from '../../components/chat/Chat';
 import List from '../../components/list/list';
 import apiRequest from '../../lib/apiRequests';
 import './profilePage.scss';
+import { useContext } from 'react';
+import { AuthContext } from "../../context/AuthContext"
 
 function ProfilePage() {
 
+    const { updateUser, currentUser } = useContext(AuthContext);
+
     const navigate = useNavigate();
+
+
+    // useEffect(() => {
+    //     if(!currentUser) {
+    //         navigate("/login")
+    //     }
+    // }, [currentUser, navigate]);
+
 
     const handleLogout = async () => {
         try {
-            const res = apiRequest.post("/auth/logout");
-            localStorage.removeItem("user");
+            await apiRequest.post("/auth/logout");
+            // localStorage.removeItem("user");
+            updateUser(null);
             navigate("/")
         }
         catch(err) {
@@ -25,16 +38,18 @@ function ProfilePage() {
                 <div className="wrapper">
                     <div className="title">
                         <h1>User Information</h1>
-                        <button>Update Profile</button>
+                        <Link to="/profile/update">
+                            <button>Update Profile</button>
+                        </Link>
                     </div>
 
                     <div className="info">
                         <span>Avatar:
-                             <img src="https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="" />
+                             <img src={currentUser.avatar || "noavatar.jpg"} alt="" />
                         </span>
 
-                        <span>Username: <b>John Doe</b></span>
-                        <span>Email: <b>john@gmail.com</b></span>
+                        <span>Username: <b>{currentUser.username}</b></span>
+                        <span>Email: <b>{currentUser.email}</b></span>
                         <button onClick={handleLogout}>Logout</button>
                     </div>
 
