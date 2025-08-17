@@ -10,7 +10,7 @@ export const register = async (req, res) => {
     try {
         const hashPassword = await bcrypt.hash(password, 10);     // returns promise 
         
-        console.log(hashPassword);
+        // console.log(hashPassword);
         
         const newUser = await prisma.user.create({
             data: {
@@ -20,7 +20,7 @@ export const register = async (req, res) => {
             },
         });
         
-        console.log(newUser);
+        // console.log(newUser);
         
         res.status(201).json({message: "user created succesfully"});
     }
@@ -71,7 +71,7 @@ export const login = async (req, res) => {
         res
             .cookie("token", token, {
                 httpOnly: true,     // so that at the client sidde cookie cant be accessible 
-                // secure: true     // we have commented it because n it is only used in https connection, not in http
+                // secure: true     // we have commented it because it is only used in https connection, not in http
                 maxAge: age,
             }) 
             .status(200)

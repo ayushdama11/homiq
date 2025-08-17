@@ -8,9 +8,10 @@ export const verifyToken = (req, res, next) => {
     jwt.verify(token, process.env.JWT_SECRET_KEY, async (err, payload) => {
         if(err) return res.status(403).json({message: "token is not valid"});
 
-        // using this id we will verify our user, when he/she will delete a post or add post, we will check if the user id of this post is same as the id with which the user has loged in, so that any user cant delete the post of any other user   
+        // using this id we will verify our user, when user will delete a post or add post, we will check if the user id of this post is same as the id with which the user has loged in, so that any user cant delete the post of any other user   
         req.userId = payload.id;
 
+        // agr sab sahi hai to aage k process kro 
         next();
     });
 }
