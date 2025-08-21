@@ -44,6 +44,7 @@
         gap: 5px;
 
         @include sm {
+            
             flex-direction: column;
             border: none;
         }
@@ -79,19 +80,27 @@
         }
     }
 
-    button {
-        border: none;
-        cursor: pointer;
+    a {
         background-color: #fece51;
         flex: 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
 
-        @include sm {
-            padding: 10px;
-        }
+        button {
+            border: none;
+            cursor: pointer;
+            background-color: #fece51;
 
-        img {
-            width: 24px;
-            height: 24px;
+            
+            @include sm {
+                padding: 10px;
+            }
+            
+            img {
+                width: 24px;
+                height: 24px;
+            }
         }
     }
 }
