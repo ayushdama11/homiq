@@ -1,5 +1,4 @@
 import { Await, Link, useLoaderData, useNavigate } from 'react-router-dom';
-import Chat from '../../components/chat/Chat';
 import List from '../../components/list/list';
 import apiRequest from '../../lib/apiRequests';
 import './profilePage.scss';
@@ -89,7 +88,14 @@ function ProfilePage() {
 
             <div className="chatContainer">
                 <div className="wrapper">
-                    <Chat />
+                    <Suspense fallback={<p>Loading...</p>}>
+                        <Await
+                            resolve={data.chatResponse} 
+                            errorElement={<p>Error loading chats !!</p>}
+                        >
+                            {(chatResponse) => <Chat chats={chatResponse.data} />} 
+                        </Await>
+                    </Suspense> 
                 </div>
             </div>
         </div>
